@@ -27,7 +27,8 @@ class ArticleList extends React.Component {
                <h2>Create an article</h2>
                <CustomForm 
                  requestType="post"
-                 articleID={null}/>
+                 articleID={null}
+                 btnText="Create"/>
             </div>
         )
     }
