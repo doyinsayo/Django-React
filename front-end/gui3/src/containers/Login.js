@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Input, Button, Spin } from 'antd';
 import Icon from '@ant-design/icons';
+import {FormComponentProps} from 'antd/lib/form/Form';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import * as actions from '../store/actions/auth';
@@ -28,7 +29,7 @@ class NormalLoginForm extends React.Component {
         );
     }
 
-    const { getFieldDecorator } = this.props.form;
+    //const { getFieldDecorator } = this.props.form;
     return (
         <div>
             {errorMessage}
@@ -41,20 +42,18 @@ class NormalLoginForm extends React.Component {
 
                 <Form onSubmit={this.handleSubmit} className="login-form">
 
-                    <FormItem>
-                    {getFieldDecorator('userName', {
-                        rules: [{ required: true, message: 'Please input your username!' }],
-                    })(
+                    <FormItem 
+                    name="username"
+                    label="Username"
+                    rules={[{ required: true, message: 'Please input your Username!' }]}>
                         <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
-                    )}
                     </FormItem>
 
-                    <FormItem>
-                    {getFieldDecorator('password', {
-                        rules: [{ required: true, message: 'Please input your Password!' }],
-                    })(
+                    <FormItem
+                    name="password"
+                    label="Password" 
+                    rules={[{ required: true, message: 'Please input your Password!' }]}>
                         <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
-                    )}
                     </FormItem>
 
                     <FormItem>
@@ -74,7 +73,7 @@ class NormalLoginForm extends React.Component {
   }
 }
 
-const WrappedNormalLoginForm = Form.create()(NormalLoginForm);
+//const WrappedNormalLoginForm = Form.create()(NormalLoginForm);
 
 const mapStateToProps = (state) => {
     return {
@@ -89,4 +88,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WrappedNormalLoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(NormalLoginForm);
